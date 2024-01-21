@@ -10,7 +10,7 @@ const Expense = () => {
 
   //*------ Render the Expense component with a list of expenses ------>
   return (
-    <section class="expense-list">
+    <section className="expense-list">
       <h2>Expenses</h2>
       {/* Display a message if no expenses are present, otherwise, render the expense items */}
       {expenses.length === 0 ? (

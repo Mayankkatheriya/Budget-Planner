@@ -16,11 +16,18 @@ const Main = () => {
   //*--------- Initial check for total budget, prompt user if not set ------------>
   useEffect(() => {
     if (totalBudget === "") {
-      //*--------- Set budget using SET_BUDGET action type ------------>
-      dispatch({
-        type: "SET_BUDGET",
-        payload: parseFloat(window.prompt("Enter your budget")),
-      });
+      if (totalBudget === "") {
+        let newBudget = window.prompt("Enter your budget");
+        while (newBudget === "" || /[^0-9.]/g.test(newBudget) || newBudget < 1) {
+          alert("Please Enter a valid number. . . .");
+          newBudget = window.prompt("Enter your budget");
+        }
+        //*--------- Set budget using SET_BUDGET action type ------------>
+        return dispatch({
+          type: "SET_BUDGET",
+          payload: parseFloat(newBudget),
+        });
+      }
     }
   }, [totalBudget, dispatch]);
 
